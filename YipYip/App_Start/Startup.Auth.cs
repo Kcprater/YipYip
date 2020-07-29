@@ -10,6 +10,7 @@ using Microsoft.Owin.Security.OAuth;
 using Owin;
 using YipYip.Providers;
 using YipYip.Models;
+using YipYip.Data;
 
 namespace YipYip
 {
