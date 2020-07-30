@@ -8,6 +8,21 @@ using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
+    public enum AttractionLocation
+    {
+        DowntownIndy,
+        BroadRipple,
+        Speedway,
+        Carmel,
+        Fishers,
+        FountainSquare,
+        Plainfield,
+        Lawrence,
+        BeachGrove,
+        Greenwood,
+        Avon,
+        Brownsburg
+    }
     public class Property
     {
         [Key]
@@ -25,9 +40,6 @@ namespace YipYip.Data
         [Required]
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
-        [Required]
-        public int OwnerId { get; set; }
-        [ForeignKey(nameof(OwnerId))]
-        public virtual Owner Owner { get; set; }
+        public AttractionLocation AttractionLocation { get; set; }
     }
 }
