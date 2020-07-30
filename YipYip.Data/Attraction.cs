@@ -18,7 +18,7 @@ namespace YipYip.Data
         public string Type { get; set; }
         [Required]
         public int AttractionRating { get; set; }
-        public AttractionLocation Area { get; set; }
+        public List<AttractionLocation> Area { get; set; }
     }
 }
 //Create enum for type?
