@@ -1,45 +1,36 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YipYip.Data;
 
-namespace YipYip.Data
+namespace YipYip.Models
 {
-    public enum AttractionLocation
+    public class PropertyCreate
     {
-        DowntownIndy,
-        BroadRipple,
-        Speedway,
-        Carmel,
-        Fishers,
-        FountainSquare,
-        Plainfield,
-        Lawrence,
-        BeachGrove,
-        Greenwood,
-        Avon,
-        Brownsburg
-    }
-    public class Property
-    {
-        [Key]
-        public int Id { get; set; }
         [Required]
+        //set min and max?
         public string Title { get; set; }
+
         [Required]
         public string Location { get; set; }
+
         [Required]
         public int NumOfBeds { get; set; }
+
         [Required]
+        //set min and max?
         public string Desc { get; set; }
+
         [Required]
-        public double WeekdayRate { get; set; }
+        public double WeekDayRate { get; set; }
+
         [Required]
         public double WeekendRate { get; set; }
+
+        [Required]
         public int Rating { get; set; }
-        public AttractionLocation AttractionLocation { get; set; }
     }
 }
