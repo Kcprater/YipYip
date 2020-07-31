@@ -11,11 +11,6 @@ namespace YipYip.Services
     public class AttractionService
     {
         private readonly ApplicationDbContext _context = new ApplicationDbContext();
-        private readonly Guid _userId;
-        public AttractionService(Guid userId)
-        {
-            _userId = userId;
-        }
         //CREATE
         public bool CreateAttraction(AttractionCreate model)
         {
@@ -28,9 +23,7 @@ namespace YipYip.Services
             };
             _context.Attractions.Add(entity);
             return _context.SaveChanges() == 1;
-                
         }
-        
         public List<AttractionListItem> GetAllAttractions()
         {
             var attractions = _context.Attractions.ToList();
@@ -49,5 +42,6 @@ namespace YipYip.Services
         //    var attractionLocation = _context.Attractions.Find(area);
         //    var attractionList
         //}
+        
     }
 }
