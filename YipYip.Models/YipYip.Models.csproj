@@ -54,8 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
+    <Compile Include="OwnerDelete.cs" />
+    <Compile Include="GetOwner.cs" />
+    <Compile Include="GetOwnerById.cs" />
+    <Compile Include="OwnerCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="OwnerUpdate.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
