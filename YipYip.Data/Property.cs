@@ -23,22 +23,6 @@ namespace YipYip.Data
         Avon,
         Brownsburg
     }
-
-    public enum Location
-    {
-        DowntownIndy,
-        BroadRipple,
-        Speedway,
-        Carmel,
-        Fishers,
-        FountainSquare,
-        Plainfield,
-        Lawrence,
-        BeachGrove,
-        Greenwood,
-        Avon,
-        Brownsburg
-    }
     public class Property
     {
         [Key]

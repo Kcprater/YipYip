@@ -32,9 +32,6 @@ namespace YipYip.Services
         //Get By Id
 
         //Get All
-        public List<PropertyListItem> GetAllProperties()
-        {
 
-        }
     }
 }

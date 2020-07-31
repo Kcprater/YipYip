@@ -22,15 +22,6 @@ namespace YipYip.Models
         public double WeekDayRate { get; set; }
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
-        public AttractionLocation Area
-        {
-            get
-            {
-                foreach (AttractionLocation attraction in _attractDirectory.FindAll(attraction => attraction.Equals(Location)))
-                {
-                    return attraction;
-                }
-            }
-        }
+        public AttractionLocation Area { get; set; }
     }
 }
