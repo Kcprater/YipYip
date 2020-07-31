@@ -28,22 +28,22 @@ namespace YipYip.Controllers
         //Create
         private AttractionService CreateAttractionService()
         {
-            var userId = Guid.Parse(User.Identity.GetUserId());
-            var noteService = new AttractionService(userId);
-            return noteService;
+            var userid = Guid.Parse(User.Identity.GetUserId());
+            var noteservice = new AttractionService();
+            return noteservice;
         }
         //Update
-        public IHttpActionResult Put(AttractionEdit note)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
+        //public IHttpActionResult Put(AttractionEdit note)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return BadRequest(ModelState);
 
-            var service = CreateAttractionService();
+        //    var service = CreateAttractionService();
 
-            if (!service.UpdateAttraction(note))
-                return InternalServerError();
+        //    if (!service.UpdateAttraction(note))
+        //        return InternalServerError();
 
-            return Ok();
-        }
+        //    return Ok();
+        //}
     }
 }
