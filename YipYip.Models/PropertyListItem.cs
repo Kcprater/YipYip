@@ -10,7 +10,7 @@ namespace YipYip.Models
 {
     public class PropertyListItem
     {
-        List<AttractionLocation> _attractDirectory = new List<AttractionLocation>();
+        List<Location> _attractDirectory = new List<Location>();
 
         //Location _propDirectory = new Location();
 
@@ -22,6 +22,6 @@ namespace YipYip.Models
         public double WeekDayRate { get; set; }
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
-        public AttractionLocation Area { get; set; }
+        public Location Area { get; set; }
     }
 }

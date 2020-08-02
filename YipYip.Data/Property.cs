@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
-    public enum AttractionLocation
+    public enum Location
     {
         DowntownIndy,
         BroadRipple,
@@ -30,7 +30,7 @@ namespace YipYip.Data
         [Required]
         public string Title { get; set; }
         [Required]
-        public string Location { get; set; }
+        public string Address { get; set; }
         [Required]
         public int NumOfBeds { get; set; }
         [Required]
@@ -40,6 +40,12 @@ namespace YipYip.Data
         [Required]
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
-        public AttractionLocation AttractionLocation { get; set; }
+        public Location PropertyLocation { get; set; }
+        [ForeignKey(nameof(ProfileId))]
+        public int ProfileId { get; set; }
+        public virtual Profile Profile { get; set; }
+
     }
+
+    
 }

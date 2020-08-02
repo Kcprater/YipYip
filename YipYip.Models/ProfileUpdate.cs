@@ -5,19 +5,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace YipYip.Data
+namespace YipYip.Models
 {
-    public class Owner
+    public class ProfileUpdate
     {
-        [Key]
-        public int OwnerId { get; set; }
         [Required]
-        public string OwnerName { get; set; }
+        public int ProfileId { get; set; }
         [Required]
+        [Display(Name = "Name")]
+        public string ProfileName { get; set; }
+        [Required]
+        [Display(Name = "Phone")]
         public int Phone { get; set; }
         [Required]
+        [Display(Name = "Email")]
         public string Email { get; set; }
         public int Rating { get; set; }
-        
     }
 }

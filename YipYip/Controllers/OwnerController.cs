@@ -18,7 +18,7 @@ namespace YipYip.Controllers
             var people = ownerService.GetOwners();
             return Ok(people);
         }
-        public IHttpActionResult Post(OwnerCreate owner)
+        public IHttpActionResult Post(ProfileCreate owner)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
@@ -36,7 +36,7 @@ namespace YipYip.Controllers
             var note = ownerService.GetOwnerById(id);
             return Ok(note);
         }
-        public IHttpActionResult Put(OwnerUpdate owner)
+        public IHttpActionResult Put(ProfileUpdate owner)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);

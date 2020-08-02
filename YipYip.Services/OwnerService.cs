@@ -16,10 +16,10 @@ namespace YipYip.Services
         {
             _userId = userId;
         }
-        public bool CreateOwner(OwnerCreate model)
+        public bool CreateOwner(ProfileCreate model)
         {
             var entity =
-                new Owner()
+                new Profile()
                 {
                     OwnerName = model.OwnerName,
                     Phone = model.Phone,
@@ -33,7 +33,7 @@ namespace YipYip.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<GetOwner> GetOwners()
+        public IEnumerable<GetProfile> GetOwners()
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -43,7 +43,7 @@ namespace YipYip.Services
                         .Where(e => e.OwnerId >= 0)
                         .Select(
                             e =>
-                                new GetOwner
+                                new GetProfile
                                 {
                                     OwnerId = e.OwnerId,
                                     OwnerName = e.OwnerName,
@@ -56,7 +56,7 @@ namespace YipYip.Services
                 return query.ToArray();
             }
         }
-        public GetOwnerById GetOwnerById(int id)
+        public GetProfileById GetOwnerById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
@@ -65,7 +65,7 @@ namespace YipYip.Services
                         .Owners
                         .Single(e => e.OwnerId == id );
                 return
-                    new GetOwnerById
+                    new GetProfileById
                     {
                         OwnerId = entity.OwnerId,
                         OwnerName = entity.OwnerName,
@@ -75,7 +75,7 @@ namespace YipYip.Services
                     };
             }
         }
-        public bool UpdateOwner(OwnerUpdate model)
+        public bool UpdateOwner(ProfileUpdate model)
         {
             using (var ctx = new ApplicationDbContext())
             {

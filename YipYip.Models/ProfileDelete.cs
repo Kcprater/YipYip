@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace YipYip.Models
 {
-    public class OwnerDelete
+    public class ProfileDelete
     {
         [Required]
-        [Display(Name = "Owner ID")]
-        public int OwnerId { get; set; }
+        [Display(Name = "Profile ID")]
+        public int ProfileId { get; set; }
         
     }
 }
