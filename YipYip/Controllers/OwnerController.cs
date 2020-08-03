@@ -9,7 +9,10 @@ using YipYip.Services;
 
 namespace YipYip.Controllers
 {
+    [Authorize]
     public class OwnerController : ApiController
-    { }
+    { 
+
+    }
 
 }

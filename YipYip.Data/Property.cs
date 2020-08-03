@@ -1,4 +1,6 @@
-﻿using System;
+﻿}
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +12,7 @@ namespace YipYip.Data
 {
     public enum Location
     {
-        DowntownIndy,
+        DowntownIndy = 1,
         BroadRipple,
         Speedway,
         Carmel,
@@ -27,6 +29,7 @@ namespace YipYip.Data
     {
         [Key]
         public int PropertyId { get; set; }
+
         [Required]
         public string Title { get; set; }
         [Required]
@@ -36,19 +39,16 @@ namespace YipYip.Data
         [Required]
         public string Desc { get; set; }
         [Required]
-        public double WeekdayRate { get; set; }
+        public double WeekDayRate { get; set; }
         [Required]
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
         public Location PropertyLocation { get; set; }
+
         [ForeignKey(nameof(OwnerId))]
-        [Required]
         public int OwnerId { get; set; }
         public virtual Owner Owner { get; set; }
+
         public virtual ICollection<Attraction> Attraction { get; set; } = new List<Attraction>();
-
-
     }
-
-
 }

@@ -1,4 +1,7 @@
-﻿using System;
+﻿
+
+
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -7,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace YipYip.Models
 {
-    public class ProfileUpdate
+    public class ProfileEdit
     {
         [Required]
         public int ProfileId { get; set; }
@@ -20,6 +23,8 @@ namespace YipYip.Models
         [Required]
         [Display(Name = "Email")]
         public string Email { get; set; }
+
+        [Display(Name = "Rating")]
         public int Rating { get; set; }
     }
 }

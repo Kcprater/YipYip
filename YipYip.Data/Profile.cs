@@ -20,7 +20,10 @@ namespace YipYip.Data
         [Required]
         [EmailAddress]
         public string Email { get; set; }
+        [Required]
         public int Rating { get; set; }
-        
+
     }
 }
+
+

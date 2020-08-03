@@ -2,66 +2,60 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
+using System.Web;
 using System.Web.Http;
 using YipYip.Models;
 using YipYip.Services;
 
 namespace YipYip.Controllers
+
 {
+    [Authorize]
     public class ProfileController : ApiController
     {
         public IHttpActionResult Get()
         {
-            ProfileService ownerService = CreateOwnerService();
-            var people = ownerService.GetOwners();
+            ProfileService profileService = CreateProfileService();
+            var people = profileService.ProfileListItems();
             return Ok(people);
         }
-        public IHttpActionResult Post(ProfileCreate owner)
+        public IHttpActionResult Post(ProfileCreate profile)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateOwnerService();
+            var service = CreateProfileService();
 
-            if (!service.CreateOwner(owner))
+            if (!service.CreateProfile(profile))
                 return InternalServerError();
 
             return Ok();
         }
         public IHttpActionResult Get(int id)
         {
-            ProfileService ownerService = CreateOwnerService();
-            var note = ownerService.GetOwnerById(id);
-            return Ok(note);
+            ProfileService profileService = CreateProfileService();
+            var profile = profileService.GetProfileById(id);
+            return Ok(profile);
         }
-        public IHttpActionResult Put(ProfileUpdate owner)
+        public IHttpActionResult Put(ProfileEdit profile)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
 
-            var service = CreateOwnerService();
+            var service = CreateProfileService();
 
-            if (!service.UpdateOwner(owner))
+            if (!service.UpdateProfile(profile))
                 return InternalServerError();
 
             return Ok();
         }
-        public IHttpActionResult Delete(int id)
-        {
-            var service = CreateOwnerService();
-
-            if (!service.OwnerDelete(id))
-                return InternalServerError();
-
-            return Ok();
-        }
-        private ProfileService CreateOwnerService()
+        private ProfileService CreateProfileService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var ownerService = new ProfileService(userId);
-            return ownerService;
+            var profileService = new ProfileService(userId);
+            return profileService;
         }
     }
+
+
 }

@@ -7,20 +7,18 @@ using System.Threading.Tasks;
 
 namespace YipYip.Models
 {
-    public class ProfileCreate
+    public class ProfileDetail
     {
-        [Required]
+        [Display(Name = "Profile ID")]
+        public int ProfileId { get; set; }
         [Display(Name = "Name")]
         public string ProfileName { get; set; }
-        [Required]
         [Display(Name = "Phone")]
         public int Phone { get; set; }
-        [Required]
-        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
-
         [Display(Name = "Rating")]
         public int Rating { get; set; }
     }
 }
+

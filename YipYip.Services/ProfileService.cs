@@ -1,4 +1,5 @@
-﻿using System;
+﻿
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace YipYip.Services
         {
             _userId = userId;
         }
-        public bool CreateOwner(ProfileCreate model)
+        public bool CreateProfile(ProfileCreate model)
         {
             var entity =
                 new Profile()
@@ -30,24 +31,24 @@ namespace YipYip.Services
 
             using (var ctx = new ApplicationDbContext())
             {
-                ctx.Owners.Add(entity);
+                ctx.Profiles.Add(entity);
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<GetProfile> GetOwners()
+        public IEnumerable<ProfileListItem> ProfileListItems()
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var query =
                     ctx
-                        .Owners
-                        .Where(e => e.OwnerId >= 0)
+                        .Profiles
+                        .Where(e => e.ProfileId >= 0)
                         .Select(
                             e =>
-                                new GetProfile
+                                new ProfileListItem
                                 {
-                                    OwnerId = e.OwnerId,
-                                    OwnerName = e.OwnerName,
+                                    ProfileId = e.ProfileId,
+                                    ProfileName = e.ProfileName,
                                     Phone = e.Phone,
                                     Email = e.Email,
                                     Rating = e.Rating,
@@ -57,34 +58,34 @@ namespace YipYip.Services
                 return query.ToArray();
             }
         }
-        public GetProfileById GetOwnerById(int id)
+        public ProfileDetail GetProfileById(int id)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Owners
-                        .Single(e => e.OwnerId == id );
+                        .Profiles
+                        .Single(e => e.ProfileId == id);
                 return
-                    new GetProfileById
+                    new ProfileDetail
                     {
-                        OwnerId = entity.OwnerId,
-                        OwnerName = entity.OwnerName,
+                        ProfileId = entity.ProfileId,
+                        ProfileName = entity.ProfileName,
                         Phone = entity.Phone,
                         Email = entity.Email,
                         Rating = entity.Rating
                     };
             }
         }
-        public bool UpdateOwner(ProfileUpdate model)
+        public bool UpdateProfile(ProfileEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
-                        .Owners
-                        .Single(e => e.OwnerId == model.OwnerId);
-                entity.OwnerName = model.OwnerName;
+                        .Profiles
+                        .Single(e => e.ProfileId == model.ProfileId && e.Id == _userId);
+                entity.ProfileName = model.ProfileName;
                 entity.Phone = model.Phone;
                 entity.Email = model.Email;
                 entity.Rating = model.Rating;
@@ -92,23 +93,8 @@ namespace YipYip.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool OwnerDelete(int id)
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var entity =
-                    ctx
-                        .Owners
-                        .Single(e => e.OwnerId == id);
-
-                ctx.Owners.Remove(entity);
-
-                return ctx.SaveChanges() == 1;
-            }
-        }
     }
 }
 
-        
-   
+
 

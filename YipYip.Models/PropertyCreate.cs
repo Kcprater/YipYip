@@ -15,7 +15,7 @@ namespace YipYip.Models
         public string Title { get; set; }
 
         [Required]
-        public string Location { get; set; }
+        public string Address { get; set; }
 
         [Required]
         public int NumOfBeds { get; set; }
@@ -30,7 +30,10 @@ namespace YipYip.Models
         [Required]
         public double WeekendRate { get; set; }
 
-        [Required]
+        //[Required]
         public int Rating { get; set; }
+        [Required]
+        public Location PropertyLocation { get; set; }
+
+        public int OwnerId { get; set; }
     }
-}
