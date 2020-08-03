@@ -21,6 +21,7 @@ namespace YipYip.Services
             var entity =
                 new Profile()
                 {
+                    Id = _userId,
                     ProfileName = model.ProfileName,
                     Phone = model.Phone,
                     Email = model.Email,
