@@ -10,21 +10,23 @@ namespace YipYip.Services
 {
     public class OwnerService
     {
-        private readonly Guid _userId;
+        private readonly Guid _Id;
 
-        public OwnerService(Guid userId)
+        public OwnerService(Guid id)
         {
-            _userId = userId;
+            _Id = id;
         }
-        public bool CreateOwner(ProfileCreate model)
+        public bool CreateOwner(OwnerCreate model)
         {
             var entity =
-                new Profile()
+                new Owner()
                 {
-                    OwnerName = model.OwnerName,
+                    Id = _Id,
+                    ProfileId = model.ProfileId,
+                    ProfileName = model.ProfileName,
                     Phone = model.Phone,
                     Email = model.Email,
-                    Rating = model.Rating,
+                    Created = DateTime.Now
                 };
 
             using (var ctx = new ApplicationDbContext())
@@ -33,81 +35,59 @@ namespace YipYip.Services
                 return ctx.SaveChanges() == 1;
             }
         }
-        public IEnumerable<GetProfile> GetOwners()
-        {
-            using (var ctx = new ApplicationDbContext())
-            {
-                var query =
-                    ctx
-                        .Owners
-                        .Where(e => e.OwnerId >= 0)
-                        .Select(
-                            e =>
-                                new GetProfile
-                                {
-                                    OwnerId = e.OwnerId,
-                                    OwnerName = e.OwnerName,
-                                    Phone = e.Phone,
-                                    Email = e.Email,
-                                    Rating = e.Rating,
-                                }
-                        );
 
-                return query.ToArray();
-            }
-        }
-        public GetProfileById GetOwnerById(int id)
+        public OwnerDetail GetOwnerById(int ownerid)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Owners
-                        .Single(e => e.OwnerId == id );
+                        .Single(e => e.OwnerId == ownerid);
                 return
-                    new GetProfileById
+                    new OwnerDetail
                     {
                         OwnerId = entity.OwnerId,
-                        OwnerName = entity.OwnerName,
+                        Id = entity.Id,
+                        ProfileName = entity.ProfileName,
                         Phone = entity.Phone,
                         Email = entity.Email,
-                        Rating = entity.Rating
+                        Rating = entity.Rating,
+                        Created = entity.Created,
+                        OwnerProperties = entity.OwnerProperties
                     };
             }
         }
-        public bool UpdateOwner(ProfileUpdate model)
+
+        public bool UpdateOwner(OwnerEdit model)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Owners
-                        .Single(e => e.OwnerId == model.OwnerId);
-                entity.OwnerName = model.OwnerName;
+                        .Single(e => e.OwnerId == model.OwnerId && e.Id == _Id);
+                entity.ProfileName = model.ProfileName;
                 entity.Phone = model.Phone;
                 entity.Email = model.Email;
-                entity.Rating = model.Rating;
-
                 return ctx.SaveChanges() == 1;
             }
         }
-        public bool OwnerDelete(int id)
+        public bool OwnerDelete(int ownerid)
         {
             using (var ctx = new ApplicationDbContext())
             {
                 var entity =
                     ctx
                         .Owners
-                        .Single(e => e.OwnerId == id);
+                        .Single(e => e.OwnerId == ownerid && e.Id == _Id);
 
                 ctx.Owners.Remove(entity);
 
                 return ctx.SaveChanges() == 1;
             }
         }
+
     }
+
 }
-
-        
-   
-

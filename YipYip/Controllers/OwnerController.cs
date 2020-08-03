@@ -14,7 +14,7 @@ namespace YipYip.Controllers
     {
         public IHttpActionResult Get()
         {
-            OwnerService ownerService = CreateOwnerService();
+            ProfileService ownerService = CreateOwnerService();
             var people = ownerService.GetOwners();
             return Ok(people);
         }
@@ -32,7 +32,7 @@ namespace YipYip.Controllers
         }
         public IHttpActionResult Get(int id)
         {
-            OwnerService ownerService = CreateOwnerService();
+            ProfileService ownerService = CreateOwnerService();
             var note = ownerService.GetOwnerById(id);
             return Ok(note);
         }
@@ -57,10 +57,10 @@ namespace YipYip.Controllers
 
             return Ok();
         }
-        private OwnerService CreateOwnerService()
+        private ProfileService CreateOwnerService()
         {
             var userId = Guid.Parse(User.Identity.GetUserId());
-            var ownerService = new OwnerService(userId);
+            var ownerService = new ProfileService(userId);
             return ownerService;
         }
     }

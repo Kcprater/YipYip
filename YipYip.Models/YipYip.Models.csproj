@@ -57,9 +57,10 @@
     <Compile Include="AttractionCreate.cs" />
     <Compile Include="AttractionEdit.cs" />
     <Compile Include="AttractionListItem.cs" />
+    <Compile Include="OwnerCreate.cs" />
+    <Compile Include="OwnerDetail.cs" />
+    <Compile Include="OwnerEdit.cs" />
     <Compile Include="ProfileDelete.cs" />
-    <Compile Include="GetProfile.cs" />
-    <Compile Include="GetProfileById.cs" />
     <Compile Include="ProfileCreate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProfileUpdate.cs" />

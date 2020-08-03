@@ -21,6 +21,6 @@ namespace YipYip.Models
         [Range(0, 5, ErrorMessage = "Please enter a rating between 1-5")]
         public int AttractionRating { get; set; }
         [Required]
-        public AttractionLocation Area { get; set; }
+        public Location Area { get; set; }
     }
 }

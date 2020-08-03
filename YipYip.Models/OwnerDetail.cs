@@ -4,23 +4,22 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using YipYip.Data;
 
-namespace YipYip.Data
+namespace YipYip.Models
 {
-    public class Profile
+    public class OwnerDetail
     {
-        [Key]
-        public int ProfileId { get; set; }
-        [Required]
+        public int OwnerId { get; set; }
         public Guid Id { get; set; }
         [Required]
         public string ProfileName { get; set; }
-        [Required]
         public int Phone { get; set; }
-        [Required]
         [EmailAddress]
         public string Email { get; set; }
-        public int Rating { get; set; }
-        
+        public int? Rating { get; set; }
+        public DateTime Created { get; set; }
+        public virtual ICollection<Property> OwnerProperties { get; set; } = new List<Property>();
+
     }
 }

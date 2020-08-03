@@ -19,7 +19,7 @@ namespace YipYip.Data
         [Required]
         public int AttractionRating { get; set; }
         [Required]
-        public Location Area { get; set; }
+        public Location AttractionLocation { get; set; }
 
     }
 }

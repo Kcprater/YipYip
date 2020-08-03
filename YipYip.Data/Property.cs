@@ -26,7 +26,7 @@ namespace YipYip.Data
     public class Property
     {
         [Key]
-        public int Id { get; set; }
+        public int PropertyId { get; set; }
         [Required]
         public string Title { get; set; }
         [Required]
@@ -41,11 +41,14 @@ namespace YipYip.Data
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
         public Location PropertyLocation { get; set; }
-        [ForeignKey(nameof(ProfileId))]
-        public int ProfileId { get; set; }
-        public virtual Profile Profile { get; set; }
+        [ForeignKey(nameof(OwnerId))]
+        [Required]
+        public int OwnerId { get; set; }
+        public virtual Owner Owner { get; set; }
+        public virtual ICollection<Attraction> Attraction { get; set; } = new List<Attraction>();
+
 
     }
 
-    
+
 }

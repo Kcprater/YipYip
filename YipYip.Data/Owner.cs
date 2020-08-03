@@ -1,16 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
-    public class Profile
+    public class Owner 
     {
         [Key]
-        public int ProfileId { get; set; }
+        public int OwnerId { get; set; }
         [Required]
         public Guid Id { get; set; }
         [Required]
@@ -20,7 +21,15 @@ namespace YipYip.Data
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        public int Rating { get; set; }
-        
+        public int? Rating { get; set; }
+        [Required]
+        public DateTime Created { get; set; }
+        [ForeignKey(nameof(ProfileId))]
+        [Required]
+        public int ProfileId { get; set; }
+        public virtual Profile Profile { get; set; }
+        public virtual ICollection<Property> OwnerProperties { get; set; } = new List<Property>();
     }
 }
+
+
