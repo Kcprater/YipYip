@@ -8,7 +8,23 @@ using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
-    public class Attraction 
+    public enum Location
+    {
+        DowntownIndy = 1,
+        BroadRipple,
+        Speedway,
+        Carmel,
+        Fishers,
+        FountainSquare,
+        Plainfield,
+        Lawrence,
+        BeachGrove,
+        Greenwood,
+        Avon,
+        Brownsburg
+    }
+
+    public class Attraction
     {
         [Key]
         public int AttractionId { get; set; }
@@ -18,7 +34,7 @@ namespace YipYip.Data
         public string Type { get; set; }
         [Required]
         public int AttractionRating { get; set; }
-        public AttractionLocation Area { get; set; }
+        [Required]
+        public Location AttractionLocation { get; set; }
     }
 }
-//Create enum for type?

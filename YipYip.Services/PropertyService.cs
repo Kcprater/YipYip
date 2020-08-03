@@ -10,28 +10,117 @@ namespace YipYip.Services
 {
     public class PropertyService
     {
-        private readonly ApplicationDbContext _context = new ApplicationDbContext();
+        private readonly Guid _userId;
+        public PropertyService(Guid userId)
+        {
+            _userId = userId;
+        }
 
-        //Create
+        //CREATE PROPERTY
         public bool CreateProperty(PropertyCreate model)
         {
-            Property property = new Property
+            var property = new Property()
             {
+                OwnerId = model.OwnerId,
                 Title = model.Title,
-                Location = model.Location,
+                Address = model.Address,
                 NumOfBeds = model.NumOfBeds,
                 Desc = model.Desc,
-                WeekdayRate = model.WeekDayRate,
+                WeekDayRate = model.WeekDayRate,
                 WeekendRate = model.WeekendRate,
                 Rating = model.Rating
             };
-            _context.Properties.Add(property);
-            return _context.SaveChanges() == 1;
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Properties.Add(property);
+                return ctx.SaveChanges() == 1;
+            }
         }
+        //GET ALL PROPERTIES
+        public IEnumerable<PropertyListItem> GetProperties()
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var query =
+                    ctx
+                    .Properties
+                    .Select(
+                        e =>
+                        new PropertyListItem
+                        {
+                            OwnerId = _userId, //needs to use profile id - this is not just for owners
+                            
+                            PropertyId = e.PropertyId,
+                            Title = e.Title,
+                            Address = e.Address,
+                            NumOfBeds = e.NumOfBeds,
+                            Desc = e.Desc,
+                            WeekDayRate = e.WeekDayRate,
+                            WeekendRate = e.WeekendRate,
+                            Rating = e.Rating,
+                        }
 
-        //Get By Id
+                        );
+                return query.ToArray();
+            }
+        }
+        //GET PROPERTY BY ID
+        public PropertyDetail GetPropertyById(int id)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var property =
+                    ctx
+                     .Properties
+                     .Single(e => e.PropertyId == id);
+                return
+                 new PropertyDetail
+                 {
+                     PropertyId = property.PropertyId,
+                     Title = property.Title,
+                     Address = property.Address,
+                     NumOfBeds = property.NumOfBeds,
+                     Desc = property.Desc,
+                     WeekDayRate = property.WeekDayRate,
+                     WeekendRate = property.WeekendRate,
+                     Rating = property.Rating
 
-        //Get All
+                 };
+            }
+        }
+        //DELETE PROPERTY
+        public bool DeleteProperty(int propertyId)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                    .Properties
+                    .Single(e => e.PropertyId == propertyId);
 
+                ctx.Properties.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        //UPDATE PROPERTY
+        public bool UpdateProperty(PropertyEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Properties
+                        .Single(e => e.PropertyId == model.PropertyId && e.OwnerId == model.OwnerId);
+                entity.Title = model.Title;
+                entity.Address = model.Address;
+                entity.NumOfBeds = model.NumOfBeds;
+                entity.Desc = model.Desc;
+                entity.WeekDayRate = model.WeekDayRate;
+                entity.WeekendRate = model.WeekendRate;
+                entity.Rating = model.Rating;
+
+                return ctx.SaveChanges() == 1;
+            }
+        }
     }
 }

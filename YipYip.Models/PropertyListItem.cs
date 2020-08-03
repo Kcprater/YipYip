@@ -10,18 +10,21 @@ namespace YipYip.Models
 {
     public class PropertyListItem
     {
-        List<AttractionLocation> _attractDirectory = new List<AttractionLocation>();
-
-        //Location _propDirectory = new Location();
+        //List<Location> Attraction = new List<Location>();
 
         public int PropertyId { get; set; }
+        public Guid OwnerId { get; set; }
         public string Title { get; set; }
-        public string Location { get; set; }
+        public string Address { get; set; }
         public int NumOfBeds { get; set; }
         public string Desc { get; set; }
         public double WeekDayRate { get; set; }
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
-        public AttractionLocation Area { get; set; }
+        public ICollection<Attraction> Attraction { get; set; }
+        public Location PropertyLocation { get; set; }
+        public Location AttractionLocation { get; set; }
+
+            //list of attractions - match property location to attraction location
+        }
     }
-}

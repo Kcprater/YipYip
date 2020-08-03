@@ -8,38 +8,30 @@ using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
-    public enum AttractionLocation
-    {
-        DowntownIndy,
-        BroadRipple,
-        Speedway,
-        Carmel,
-        Fishers,
-        FountainSquare,
-        Plainfield,
-        Lawrence,
-        BeachGrove,
-        Greenwood,
-        Avon,
-        Brownsburg
-    }
     public class Property
     {
         [Key]
-        public int Id { get; set; }
+        public int PropertyId { get; set; }
+
         [Required]
         public string Title { get; set; }
         [Required]
-        public string Location { get; set; }
+        public string Address { get; set; }
         [Required]
         public int NumOfBeds { get; set; }
         [Required]
         public string Desc { get; set; }
         [Required]
-        public double WeekdayRate { get; set; }
+        public double WeekDayRate { get; set; }
         [Required]
         public double WeekendRate { get; set; }
         public int Rating { get; set; }
-        public AttractionLocation AttractionLocation { get; set; }
+        public Location PropertyLocation { get; set; }
+
+        [ForeignKey(nameof(OwnerId))]
+        public int OwnerId { get; set; }
+        public virtual Owner Owner { get; set; }
+
+        public virtual ICollection<Attraction> Attraction { get; set; } = new List<Attraction>();
     }
 }

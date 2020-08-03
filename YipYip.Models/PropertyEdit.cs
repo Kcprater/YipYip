@@ -9,8 +9,9 @@ namespace YipYip.Models
     public class PropertyEdit
     {
         public int PropertyId { get; set; }
+        public int OwnerId { get; set; }
         public string Title { get; set; }
-        public string Location { get; set; }
+        public string Address { get; set; }
         public int NumOfBeds { get; set; }
         public string Desc { get; set; }
         public double WeekDayRate { get; set; }
