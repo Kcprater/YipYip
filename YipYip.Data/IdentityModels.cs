@@ -32,9 +32,14 @@ namespace YipYip.Data
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Profile> Profiles { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
         public DbSet<Profile> Profiles { get; set; }
+<<<<<<< HEAD
+=======
+        public DbSet<Owner> Owners { get; set; }
+>>>>>>> 73524be85bb9dd1ceb4d82f39f096219b9d47e35
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             modelBuilder

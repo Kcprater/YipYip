@@ -17,11 +17,16 @@ namespace YipYip.Data
         [Required]
         public string Type { get; set; }
         [Required]
+<<<<<<< HEAD
         public int Rating { get; set; }     
         [Required]
         public int PropertyId { get; set; }
         [ForeignKey(nameof(PropertyId))]
         public virtual Property Property { get; set; }
+=======
+        public int AttractionRating { get; set; }
+        [Required]
+        public Location AttractionLocation { get; set; }
+>>>>>>> 73524be85bb9dd1ceb4d82f39f096219b9d47e35
     }
 }
-//Create enum for type?
