@@ -28,7 +28,8 @@ namespace YipYip.Services
                 Desc = model.Desc,
                 WeekDayRate = model.WeekDayRate,
                 WeekendRate = model.WeekendRate,
-                Rating = model.Rating
+                Rating = model.Rating,
+                PropertyLocation = model.PropertyLocation,
             };
             using (var ctx = new ApplicationDbContext())
             {
@@ -118,6 +119,7 @@ namespace YipYip.Services
                 entity.WeekDayRate = model.WeekDayRate;
                 entity.WeekendRate = model.WeekendRate;
                 entity.Rating = model.Rating;
+                entity.PropertyLocation = model.PropertyLocation;
 
                 return ctx.SaveChanges() == 1;
             }

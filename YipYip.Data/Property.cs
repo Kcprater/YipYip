@@ -8,6 +8,21 @@ using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
+    public enum Location
+    {
+        DowntownIndy = 1,
+        BroadRipple,
+        Speedway,
+        Carmel,
+        Fishers,
+        FountainSquare,
+        Plainfield,
+        Lawrence,
+        BeachGrove,
+        Greenwood,
+        Avon,
+        Brownsburg
+    }
     public class Property
     {
         [Key]
