@@ -22,8 +22,5 @@ namespace YipYip.Data
         public string Email { get; set; }
         [Required]
         public int Rating { get; set; }
-
     }
 }
-
-

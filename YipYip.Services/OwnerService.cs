@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using YipYip.Data;
-using YipYip.Models;
+﻿//using System;
+//using System.Collections.Generic;
+//using System.Linq;
+//using System.Text;
+//using System.Threading.Tasks;
+//using YipYip.Data;
+//using YipYip.Models;
 
 namespace YipYip.Services
 {
@@ -82,12 +82,9 @@ namespace YipYip.Services
                         .Owners
                         .Single(e => e.OwnerId == ownerid && e.Id == _Id);
 
-                ctx.Owners.Remove(entity);
-
                 return ctx.SaveChanges() == 1;
             }
         }
 
     }
-
 }

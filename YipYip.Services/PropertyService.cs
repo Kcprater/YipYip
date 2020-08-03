@@ -50,7 +50,7 @@ namespace YipYip.Services
                         new PropertyListItem
                         {
                             OwnerId = _userId, //needs to use profile id - this is not just for owners
-
+                            
                             PropertyId = e.PropertyId,
                             Title = e.Title,
                             Address = e.Address,
@@ -126,5 +126,3 @@ namespace YipYip.Services
         }
     }
 }
-
-

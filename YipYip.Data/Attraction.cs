@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace YipYip.Data
 {
-    public class Attraction 
+    public class Attraction
     {
         [Key]
         public int AttractionId { get; set; }
@@ -20,7 +20,5 @@ namespace YipYip.Data
         public int AttractionRating { get; set; }
         [Required]
         public Location AttractionLocation { get; set; }
-
     }
 }
-//Create enum for type?

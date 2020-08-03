@@ -17,6 +17,5 @@ namespace YipYip.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public int ProfileId { get; set; }
-
     }
 }

@@ -20,6 +20,5 @@ namespace YipYip.Models
         public int? Rating { get; set; }
         public DateTime Created { get; set; }
         public virtual ICollection<Property> OwnerProperties { get; set; } = new List<Property>();
-
     }
 }

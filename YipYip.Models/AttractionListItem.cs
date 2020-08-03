@@ -22,6 +22,6 @@ namespace YipYip.Models
         [Display(Name = "Rating")]
         public int AttractionRating { get; set; }
         [Display(Name = "Location of Attraction")]
-        public Location Area { get; set; }
+        public Location AttractionLocation { get; set; }
     }
 }

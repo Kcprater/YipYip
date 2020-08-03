@@ -21,4 +21,3 @@ namespace YipYip.Models
         public int Rating { get; set; }
     }
 }
-
