@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace YipYip.Models
 {
-    public class OwnerCreate
+    public class OwnerDetail
     {
     }
 }

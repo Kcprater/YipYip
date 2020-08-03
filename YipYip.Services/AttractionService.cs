@@ -19,7 +19,7 @@ namespace YipYip.Services
                 Name = model.Name,
                 Type = model.Type,
                 AttractionRating = model.AttractionRating,
-                Area = model.Area
+                //Area = model.Area
             };
             _context.Attractions.Add(entity);
             return _context.SaveChanges() == 1;
@@ -32,7 +32,7 @@ namespace YipYip.Services
                 Name = s.Name,
                 Type = s.Type,
                 AttractionRating = s.AttractionRating,
-                Area = s.Area
+                //Area = s.Area
             }).ToList();
             return attractionList;
         }
