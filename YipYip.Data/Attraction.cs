@@ -18,7 +18,7 @@ namespace YipYip.Data
         public string Type { get; set; }
         [Required]
         public int Rating { get; set; }     
-       [Required]
+        [Required]
         public int PropertyId { get; set; }
         [ForeignKey(nameof(PropertyId))]
         public virtual Property Property { get; set; }

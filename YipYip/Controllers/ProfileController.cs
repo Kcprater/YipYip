@@ -7,7 +7,8 @@ using System.Web.Http;
 using YipYip.Models;
 using YipYip.Services;
 
-namespace YipYip
+namespace YipYip.Controllers
+
 {
         public class ProfileController : ApiController
         {
