@@ -6,108 +6,85 @@
 //using YipYip.Data;
 //using YipYip.Models;
 
-//namespace YipYip.Services
-//{
-//    public class OwnerService
-//    {
-//        private readonly Guid _userId;
+namespace YipYip.Services
+{
+    public class OwnerService
+    {
+        private readonly Guid _Id;
 
-//        public OwnerService(Guid userId)
-//        {
-//            _userId = userId;
-//        }
-//        public bool CreateOwner(OwnerCreate model)
-//        {
-//            var entity =
-//                new Owner()
-//                {
-//                    OwnerName = model.OwnerName,
-//                    Phone = model.Phone,
-//                    Email = model.Email,
-//                    Rating = model.Rating,
-//                };
+        public OwnerService(Guid id)
+        {
+            _Id = id;
+        }
+        public bool CreateOwner(OwnerCreate model)
+        {
+            var entity =
+                new Owner()
+                {
+                    Id = _Id,
+                    ProfileId = model.ProfileId,
+                    ProfileName = model.ProfileName,
+                    Phone = model.Phone,
+                    Email = model.Email,
+                    Created = DateTime.Now
+                };
 
-//            using (var ctx = new ApplicationDbContext())
-//            {
-//                ctx.Owners.Add(entity);
-//                return ctx.SaveChanges() == 1;
-//            }
-//        }
-//        public IEnumerable<GetOwner> GetOwners()
-//        {
-//            using (var ctx = new ApplicationDbContext())
-//            {
-//                var query =
-//                    ctx
-//                        .Owners
-//                        .Where(e => e.OwnerId >= 0)
-//                        .Select(
-//                            e =>
-//                                new GetOwner
-//                                {
-//                                    OwnerId = e.OwnerId,
-//                                    OwnerName = e.OwnerName,
-//                                    Phone = e.Phone,
-//                                    Email = e.Email,
-//                                    Rating = e.Rating,
-//                                }
-//                        );
+            using (var ctx = new ApplicationDbContext())
+            {
+                ctx.Owners.Add(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
-//                return query.ToArray();
-//            }
-//        }
-//        public GetOwnerById GetOwnerById(int id)
-//        {
-//            using (var ctx = new ApplicationDbContext())
-//            {
-//                var entity =
-//                    ctx
-//                        .Owners
-//                        .Single(e => e.OwnerId == id );
-//                return
-//                    new GetOwnerById
-//                    {
-//                        OwnerId = entity.OwnerId,
-//                        OwnerName = entity.OwnerName,
-//                        Phone = entity.Phone,
-//                        Email = entity.Email,
-//                        Rating = entity.Rating
-//                    };
-//            }
-//        }
-//        public bool UpdateOwner(OwnerEdit model)
-//        {
-//            using (var ctx = new ApplicationDbContext())
-//            {
-//                var entity =
-//                    ctx
-//                        .Owners
-//                        .Single(e => e.OwnerId == model.OwnerId);
-//                entity.OwnerName = model.OwnerName;
-//                entity.Phone = model.Phone;
-//                entity.Email = model.Email;
-//                entity.Rating = model.Rating;
+        public OwnerDetail GetOwnerById(int ownerid)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Owners
+                        .Single(e => e.OwnerId == ownerid);
+                return
+                    new OwnerDetail
+                    {
+                        OwnerId = entity.OwnerId,
+                        Id = entity.Id,
+                        ProfileName = entity.ProfileName,
+                        Phone = entity.Phone,
+                        Email = entity.Email,
+                        Rating = entity.Rating,
+                        Created = entity.Created,
+                        OwnerProperties = entity.OwnerProperties
+                    };
+            }
+        }
 
-//                return ctx.SaveChanges() == 1;
-//            }
-//        }
-//        public bool OwnerDelete(int id)
-//        {
-//            using (var ctx = new ApplicationDbContext())
-//            {
-//                var entity =
-//                    ctx
-//                        .Owners
-//                        .Single(e => e.OwnerId == id);
+        public bool UpdateOwner(OwnerEdit model)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Owners
+                        .Single(e => e.OwnerId == model.OwnerId && e.Id == _Id);
+                entity.ProfileName = model.ProfileName;
+                entity.Phone = model.Phone;
+                entity.Email = model.Email;
+                return ctx.SaveChanges() == 1;
+            }
+        }
+        public bool OwnerDelete(int ownerid)
+        {
+            using (var ctx = new ApplicationDbContext())
+            {
+                var entity =
+                    ctx
+                        .Owners
+                        .Single(e => e.OwnerId == ownerid && e.Id == _Id);
 
-//                ctx.Owners.Remove(entity);
+                return ctx.SaveChanges() == 1;
+            }
+        }
 
-//                return ctx.SaveChanges() == 1;
-//            }
-//        }
-//    }
-//}
-
-        
-   
-
+    }
+}

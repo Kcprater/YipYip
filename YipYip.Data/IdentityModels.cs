@@ -35,6 +35,7 @@ namespace YipYip.Data
         public DbSet<Profile> Profiles { get; set; }
         public DbSet<Property> Properties { get; set; }
         public DbSet<Attraction> Attractions { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
         public DbSet<Owner> Owners { get; set; }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

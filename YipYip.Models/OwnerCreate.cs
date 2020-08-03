@@ -9,5 +9,13 @@ namespace YipYip.Models
 {
     public class OwnerCreate
     {
+        [Required]
+        [Display(Name = "Owner Name")]
+        public string ProfileName { get; set; }
+        public int Phone { get; set; }
+        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
+        public string Email { get; set; }
+        public int ProfileId { get; set; }
     }
 }

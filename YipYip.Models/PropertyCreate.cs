@@ -37,4 +37,3 @@ namespace YipYip.Models
 
         public int OwnerId { get; set; }
     }
-}

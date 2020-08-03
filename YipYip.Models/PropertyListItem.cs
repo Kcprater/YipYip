@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.CodeDom;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -33,6 +33,6 @@ namespace YipYip.Models
         public Location PropertyLocation { get; set; }
         public Location AttractionLocation { get; set; }
 
-            //list of attractions - match property location to attraction location
-        }
+        //list of attractions - match property location to attraction location
     }
+}
