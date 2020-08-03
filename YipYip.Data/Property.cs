@@ -28,6 +28,6 @@ namespace YipYip.Data
         [Required]
         public int OwnerId { get; set; }
         [ForeignKey(nameof(OwnerId))]
-        public virtual Owner Owner { get; set; }
+        public virtual Profile Owner { get; set; }
     }
 }
